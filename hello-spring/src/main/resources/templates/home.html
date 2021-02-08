@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
 <body>
 <div class="container">
     <div>
@@ -11,5 +14,25 @@
         </p>
     </div>
 </div> <!-- /container -->
+<script type="text/javascript" language="javascript">
+
+    $(document).ready(function(){
+
+        $.ajax({
+            type : "post", //전송방식을 지정한다 (POST,GET),
+            contentType : "application/json",
+            url : "http://localhost:8080/test",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+            data: JSON.stringify({id : "1234", name : "홍길동"}),
+            error : function(){
+                alert("통신실패!!!!");
+            },
+            success : function(Parse_data){
+                console.log(Parse_data);
+            }
+
+        });
+    });
+
+</script>
 </body>
 </html>

@@ -6,10 +6,10 @@ import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller //스프링 컨테이너가 생성될 때 Controller 애노테이션이 있으면 컨테이너넣고 관리한다.
 public class MemberController {
@@ -46,5 +46,15 @@ public class MemberController {
         model.addAttribute("members", members);
 
         return "members/memberList";
+    }
+
+    @RequestMapping(value="/test", method= RequestMethod.POST)
+    @ResponseBody
+    public String stringify(@RequestBody Map<String, Object> param) {
+
+        String a = (String) param.get("id");
+        System.out.println(a);
+
+        return "성공인가?";
     }
 }
